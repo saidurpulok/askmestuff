@@ -41,6 +41,44 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Add verification step
+      - name: Verify Environment Variables
+        run: |
+          if [ -z "$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY" ]; then
+            echo "Error: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY is not set"
+            exit 1
+          fi
+          if [ -z "$CLERK_SECRET_KEY" ]; then
+            echo "Error: CLERK_SECRET_KEY is not set"
+            exit 1
+          fi
+          if [ -z "$CONVEX_DEPLOYMENT" ]; then
+            echo "Error: CONVEX_DEPLOYMENT is not set"
+            exit 1
+          fi
+          if [ -z "$NEXT_PUBLIC_CONVEX_URL" ]; then
+            echo "Error: NEXT_PUBLIC_CONVEX_URL is not set"
+            exit 1
+          fi
+          if [ -z "$CLERK_ISSUER_URL" ]; then
+            echo "Error: CLERK_ISSUER_URL is not set"
+            exit 1
+          fi
+          if [ -z "$GROQ_API_KEY" ]; then
+            echo "Error: GROQ_API_KEY is not set"
+            exit 1
+          fi
+          if [ -z "$WXFLOWS_APIKEY" ]; then
+            echo "Error: WXFLOWS_APIKEY is not set"
+            exit 1
+          fi
+          if [ -z "$WXFLOWS_ENDPOINT" ]; then
+            echo "Error: WXFLOWS_ENDPOINT is not set"
+            exit 1
+          fi
+          echo "Environment variables verified successfully"
+
+
       - name: Install pnpm
         run: npm install -g pnpm
 
