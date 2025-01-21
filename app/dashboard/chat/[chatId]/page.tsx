@@ -11,6 +11,15 @@ interface ChatPageProps {
   }>;
 }
 
+export async function generateStaticParams() {
+  const convex = getConvexClient();
+  const chats = await convex.query(api.chats.listChats);
+  return chats.map((chat: { _id: Id<"chats"> }) => ({
+    chatId: chat._id,
+  }));
+}
+
+
 export default async function ChatPage({ params }: ChatPageProps) {
   const { chatId } = await params;
 
