@@ -28,6 +28,15 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+      CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+      CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEPLOYMENT }}
+      NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+      CLERK_ISSUER_URL: ${{ secrets.CLERK_ISSUER_URL }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      WXFLOWS_APIKEY: ${{ secrets.WXFLOWS_APIKEY }}
+      WXFLOWS_ENDPOINT: ${{ secrets.WXFLOWS_ENDPOINT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
